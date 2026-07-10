@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+/*
+  Editorial, warm, premium.
+  Paper + ink + one restrained accent. No gradients, no glow, no glass.
+*/
+
+:root {
+  --paper: #faf7f1;
+  --surface: #ffffff;
+  --ink: #211d17;
+  --muted: #6f675a;
+  --faint: #a89f8f;
+  --hairline: #e8e1d3;
+  --accent: #8f4a2a;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-hairline: var(--hairline);
+  --color-accent: var(--accent);
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(143, 74, 42, 0.16);
+}
+
+/* Small-caps editorial label */
+@utility kicker {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Hairline rule */
+@utility rule {
+  border-top: 1px solid var(--hairline);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
