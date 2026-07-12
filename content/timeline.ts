@@ -56,7 +56,7 @@ export const milestones: Milestone[] = [
   },
   {
     date: "Ahead",
-    title: "Private Property integration",
+    title: "Portal integration research",
     body: "Feed-provider integration carrying listings straight from ListingForge onto South Africa’s major property portals.",
     status: "ahead",
   },

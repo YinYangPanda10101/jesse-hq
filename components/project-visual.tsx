@@ -165,7 +165,8 @@ export function ProjectVisual({
         {variant === "automation" && <AutomationStudy />}
       </div>
       <figcaption className="mt-3 text-xs text-faint">
-        Interface study — {name}
+        {variant === "listingforge" ? "Product preview" : "Interface study"} —{" "}
+        {name}
       </figcaption>
     </figure>
   );
