@@ -9,6 +9,8 @@ export interface Project {
   solution: string;
   outcome: string;
   visual: "listingforge" | "jesse-os" | "websites" | "automation";
+  /** Live links — only add once the destination is real and presentable. */
+  links?: { label: string; href: string }[];
 }
 
 export const projects: Project[] = [
@@ -24,6 +26,10 @@ export const projects: Project[] = [
     outcome:
       "Live and taking payments, with a free tier for solo agents and agencies onboarding now. The measure of success isn’t listings generated — it’s the afternoon an agent gets back.",
     visual: "listingforge",
+    links: [
+      { label: "www.listingforge.co.za", href: "https://www.listingforge.co.za" },
+      { label: "hello@listingforge.co.za", href: "mailto:hello@listingforge.co.za" },
+    ],
   },
   {
     slug: "jesse-os",

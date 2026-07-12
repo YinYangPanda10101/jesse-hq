@@ -79,6 +79,31 @@ export default function ProjectsPage() {
                   </dd>
                 </div>
               </dl>
+
+              {project.links && (
+                <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3">
+                  {project.links.map((link) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      {...(link.href.startsWith("http")
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-ink"
+                    >
+                      <span className="border-b border-hairline pb-0.5 transition-colors duration-300 group-hover/link:border-ink">
+                        {link.label}
+                      </span>
+                      <span
+                        aria-hidden
+                        className="text-faint transition-all duration-300 group-hover/link:translate-x-0.5 group-hover/link:text-ink"
+                      >
+                        →
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              )}
             </Reveal>
 
             {/* Visual column */}

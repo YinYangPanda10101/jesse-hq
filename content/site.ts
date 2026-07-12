@@ -6,9 +6,7 @@ export const site = {
   email: "jesseschulman18@gmail.com",
   whatsapp: "+27 71 668 5130",
   whatsappUrl: "https://wa.me/27716685130",
-  // TODO: set to the real LinkedIn profile URL, then re-enable the LinkedIn
-  // links in app/contact/page.tsx and components/footer.tsx.
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/jesse-schulman-3182b624a/",
   // TODO: set to a real booking link (Cal.com / Calendly), then re-enable
   // the "Book a call" links in app/contact/page.tsx and components/footer.tsx.
   booking: "",
