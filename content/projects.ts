@@ -13,24 +13,57 @@ export interface Project {
   links?: { label: string; href: string }[];
 }
 
+/**
+ * Flagship case study. ListingForge gets a fuller treatment than the
+ * other exhibits — it is the primary proof on the site.
+ * Facts only: nothing here should imply revenue or paying customers
+ * until they exist.
+ */
+export const flagship = {
+  slug: "listingforge",
+  name: "ListingForge",
+  kicker: "2026 · SaaS — Real Estate",
+  status: "Live" as const,
+  proofPoints: [
+    "Built with live payments",
+    "Designed for South African estate agencies",
+    "Free tier available",
+  ],
+  whatItSolves:
+    "Every mandate demands a small mountain of writing — descriptions, portal text, social posts, brochures. ListingForge turns the property details an agent already has into a complete, ready-to-publish marketing pack in minutes.",
+  whoItHelps:
+    "South African estate agencies and the solo agents inside them. Priced in rand, paid through Paystack, and built around how listings actually get published here — portals, WhatsApp and print.",
+  whyItMatters:
+    "The hours agents spend producing marketing are hours not spent with sellers and buyers mid-move. Every pack generated hands an afternoon back to the person guiding the transition.",
+  produces: [
+    "Listing descriptions",
+    "Portal copy",
+    "Social captions",
+    "WhatsApp messages",
+    "Client emails",
+    "SEO copy",
+    "Brochure copy",
+  ],
+  currentStatus: [
+    "Live product",
+    "Paystack approved",
+    "Public launch in progress",
+    "Onboarding first agencies",
+  ],
+  nextMilestone: "10 paying agencies",
+  screenshotSlots: [
+    "Dashboard",
+    "Listing creation wizard",
+    "Generated marketing pack",
+    "PDF brochure output",
+  ],
+  links: [
+    { label: "www.listingforge.co.za", href: "https://www.listingforge.co.za" },
+    { label: "hello@listingforge.co.za", href: "mailto:hello@listingforge.co.za" },
+  ],
+};
+
 export const projects: Project[] = [
-  {
-    slug: "listingforge",
-    name: "ListingForge",
-    kicker: "2026 · SaaS — Real Estate",
-    status: "Live",
-    problem:
-      "A property listing doesn’t sell on photos alone. It needs a description, social posts, brochure copy, portal text — and agents write all of it by hand, for every mandate, week after week. The hours go to admin. The people — sellers mid-move, buyers mid-decision — get whatever attention is left over.",
-    solution:
-      "ListingForge turns a property’s details into a complete, ready-to-publish listing pack in minutes. Built for South African agencies and priced for them, with payments through Paystack. It ships with a pact, not just a feature list: never spammy, never manipulative, never bloated.",
-    outcome:
-      "Live and taking payments, with a free tier for solo agents and agencies onboarding now. The measure of success isn’t listings generated — it’s the afternoon an agent gets back.",
-    visual: "listingforge",
-    links: [
-      { label: "www.listingforge.co.za", href: "https://www.listingforge.co.za" },
-      { label: "hello@listingforge.co.za", href: "mailto:hello@listingforge.co.za" },
-    ],
-  },
   {
     slug: "jesse-os",
     name: "Jesse OS",
@@ -46,15 +79,15 @@ export const projects: Project[] = [
   },
   {
     slug: "website-systems",
-    name: "Website Systems",
+    name: "Website Concepts & Systems",
     kicker: "2026 · Local Business Web",
-    status: "Shipped",
+    status: "Ongoing",
     problem:
       "Painters, salons, plumbers — the businesses that hold neighbourhoods together — are either invisible online or trapped in outdated sites nobody can update. Traditional agencies quote them out of reach.",
     solution:
-      "Fast, handsome, single-purpose websites built as a repeatable system: STERIC Painters, Meera Beauty Hair Oasis, Sechaba Urban Nation Salon, Sam Plumbing Electrical & Handyman, Patcha Properties. WhatsApp-first booking, because that’s where their customers already are.",
+      "Fast, focused websites built as one repeatable system — concept and production builds for STERIC Painters, Meera Beauty Hair Oasis, Sechaba Urban Nation Salon, Sam Plumbing Electrical & Handyman, and Patcha Properties. WhatsApp-first booking, because that’s where their customers already are.",
     outcome:
-      "Five businesses with a real front door on the internet — and a build system that gets faster and sharper with every site it produces.",
+      "Five complete, launch-ready builds and a system that gets faster and sharper with each one — proof of a repeatable production line, not a portfolio of one-offs.",
     visual: "websites",
   },
   {

@@ -38,11 +38,18 @@ All content lives in `/content` as plain data:
 - `content/essays.ts` — essays (add one object = new essay page, card, sitemap entry)
 - `content/timeline.ts` — milestones (add entries; `"ahead"` status renders under "What's ahead")
 
-## Before going live — placeholders to replace
+## Remaining placeholders
 
-1. `content/site.ts` → real **domain**, **LinkedIn URL**, **booking link** (Cal.com/Calendly)
-2. `components/project-visual.tsx` → swap interface studies for **real product screenshots** when ready (drop images in `/public`)
-3. `app/story/page.tsx` → personalise the chapter prose — it's written from the founder-story brief, and reads best with Jesse's own specifics woven in
+1. **ListingForge screenshots** — the Projects page has four labelled screenshot slots
+   (Dashboard, Listing creation wizard, Generated marketing pack, PDF brochure output).
+   Drop real captures into `/public/screenshots/` and swap each `<ScreenshotSlot>` in
+   `app/projects/page.tsx` per the instructions at the top of
+   `components/screenshot-slot.tsx`.
+2. `content/site.ts` → real **domain** (currently jesseschulman.com placeholder) and a
+   **booking link** (Cal.com/Calendly) — the "Book a call" links stay hidden until set.
+3. `app/story/page.tsx` → personalise the chapter prose with Jesse's own specifics.
+4. **Afrikaans support** — deliberately not claimed on the ListingForge case study;
+   add it to `flagship.proofPoints` in `content/projects.ts` once confirmed working.
 
 ## Design system
 

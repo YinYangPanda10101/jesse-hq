@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { ButtonLink } from "@/components/button-link";
-import { projects } from "@/content/projects";
+import { ProjectVisual } from "@/components/project-visual";
+import { flagship, projects } from "@/content/projects";
 import { site } from "@/content/site";
 
 const nowItems = [
@@ -30,11 +31,25 @@ export default function Home() {
           </p>
         </Reveal>
         <Reveal delay={0.24}>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <ButtonLink href="/projects">View Projects</ButtonLink>
-            <ButtonLink href="/story" variant="ghost">
-              Read My Story
+          <div className="mt-10 flex flex-wrap items-center gap-3">
+            <ButtonLink href="/projects#listingforge">
+              See ListingForge
             </ButtonLink>
+            <ButtonLink href="/projects" variant="ghost">
+              View Projects
+            </ButtonLink>
+            <Link
+              href="/story"
+              className="group inline-flex h-12 items-center gap-2 px-2 text-sm font-medium text-muted transition-colors hover:text-ink"
+            >
+              Read my story
+              <span
+                aria-hidden
+                className="transition-transform duration-300 group-hover:translate-x-0.5"
+              >
+                →
+              </span>
+            </Link>
           </div>
         </Reveal>
       </section>
@@ -91,11 +106,53 @@ export default function Home() {
               </Link>
             </div>
           </Reveal>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-3">
-            {projects.slice(0, 3).map((project, i) => (
+          {/* Flagship: ListingForge */}
+          <Reveal>
+            <Link
+              href="/projects#listingforge"
+              className="group mt-12 block rounded-2xl border border-hairline bg-surface p-8 transition-colors duration-300 hover:bg-paper sm:p-10"
+            >
+              <div className="grid items-center gap-10 md:grid-cols-[1.15fr_1fr]">
+                <div>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <p className="kicker">Flagship · {flagship.kicker}</p>
+                    <span className="inline-flex h-6 items-center rounded-full border border-accent/30 bg-accent/8 px-2.5 text-[11px] font-medium tracking-wide text-accent">
+                      Live
+                    </span>
+                  </div>
+                  <h2 className="mt-5 font-serif text-3xl tracking-tight sm:text-4xl">
+                    {flagship.name}
+                  </h2>
+                  <p className="mt-4 max-w-md leading-relaxed text-muted">
+                    Complete, ready-to-publish listing packs for South African
+                    estate agencies — in minutes, not evenings.
+                  </p>
+                  <p className="mt-5 text-sm text-muted">
+                    {flagship.proofPoints.join("  ·  ")}
+                  </p>
+                  <p className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-ink">
+                    See ListingForge
+                    <span
+                      aria-hidden
+                      className="transition-transform duration-300 group-hover:translate-x-0.5"
+                    >
+                      →
+                    </span>
+                  </p>
+                </div>
+                <div className="hidden md:block">
+                  <ProjectVisual variant="listingforge" name={flagship.name} />
+                </div>
+              </div>
+            </Link>
+          </Reveal>
+
+          {/* Supporting projects */}
+          <div className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-hairline bg-hairline sm:grid-cols-2">
+            {projects.slice(0, 2).map((project, i) => (
               <Reveal key={project.slug} delay={0.08 * i} className="h-full">
                 <Link
-                  href="/projects"
+                  href={`/projects#${project.slug}`}
                   className="group flex h-full flex-col justify-between bg-surface p-8 transition-colors duration-300 hover:bg-paper"
                 >
                   <div>
@@ -136,6 +193,9 @@ export default function Home() {
               <h2 className="mt-6 font-serif text-3xl tracking-tight sm:text-4xl">
                 What I&rsquo;m focused on
               </h2>
+              <p className="mt-4 max-w-sm leading-relaxed text-muted">
+                Current focus: turning shipped products into paying customers.
+              </p>
             </Reveal>
             <Reveal delay={0.1}>
               <ul className="space-y-5">

@@ -20,8 +20,8 @@ export const milestones: Milestone[] = [
   },
   {
     date: "Mid 2026",
-    title: "Website systems for local businesses",
-    body: "Built five fast, focused sites — STERIC Painters, Meera Beauty Hair Oasis, Sechaba Urban Nation Salon, Sam Plumbing Electrical & Handyman, Patcha Properties — as one repeatable system.",
+    title: "Website concepts & systems for local businesses",
+    body: "Built five launch-ready sites — STERIC Painters, Meera Beauty Hair Oasis, Sechaba Urban Nation Salon, Sam Plumbing Electrical & Handyman, Patcha Properties — as one repeatable build system.",
     status: "shipped",
   },
   {

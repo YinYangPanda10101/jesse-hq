@@ -4,7 +4,8 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Let's build something worth remembering.",
+  description:
+    "Want to build something useful together? Email, WhatsApp and LinkedIn — no forms, no funnels.",
 };
 
 const channels = [
@@ -51,7 +52,7 @@ export default function ContactPage() {
       </Reveal>
       <Reveal delay={0.08}>
         <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-[1.12] tracking-tight sm:text-6xl">
-          Let&rsquo;s build something worth remembering.
+          Want to build something useful together?
         </h1>
       </Reveal>
 

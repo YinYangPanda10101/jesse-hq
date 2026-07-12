@@ -76,7 +76,9 @@ export function TimelineView() {
             />
             <Reveal>
               <div className="flex flex-wrap items-center gap-3">
-                <p className="kicker">{m.date}</p>
+                {/* Ahead entries carry no date — showing "Ahead" twice reads
+                    as a mistake, so the chip does the talking. */}
+                {m.status !== "ahead" && <p className="kicker">{m.date}</p>}
                 <StatusChip status={m.status} />
               </div>
               <h2 className="mt-3 font-serif text-2xl tracking-tight sm:text-3xl">

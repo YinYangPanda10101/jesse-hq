@@ -12,7 +12,7 @@ export const site = {
   booking: "",
   tagline: "I build software that gives people their time back.",
   description:
-    "Founder of ListingForge. Building products, systems and businesses that help people spend less time on repetitive work and more time with people.",
+    "Jesse Schulman — ListingForge founder and AI systems builder in South Africa. A founder website: live products, essays and a timeline of software that gives people their time back.",
 };
 
 export const navLinks = [

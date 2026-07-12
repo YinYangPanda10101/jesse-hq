@@ -24,6 +24,18 @@ export const metadata: Metadata = {
     template: `%s — ${site.name}`,
   },
   description: site.description,
+  keywords: [
+    "Jesse Schulman",
+    "ListingForge founder",
+    "ListingForge",
+    "AI systems builder",
+    "South Africa",
+    "founder website",
+    "software that gives people their time back",
+    "real estate SaaS South Africa",
+  ],
+  authors: [{ name: site.name, url: site.url }],
+  creator: site.name,
   openGraph: {
     title: `${site.name} — ${site.tagline}`,
     description: site.description,
