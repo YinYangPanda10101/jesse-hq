@@ -48,11 +48,12 @@ All content lives in `/content` as plain data:
 
 ## Product screenshots
 
-`/public/screenshots/` holds real ListingForge captures (dashboard, wizard, generated
-marketing pack, PDF brochure) taken from the app running in demo mode with seeded
-data — no live keys or customer data. To refresh them after UI changes, re-capture
-at 1600×1000 @2x and overwrite the files; the Projects page picks them up via
-`flagship.screenshots` in `content/projects.ts`.
+`/public/screenshots/` holds real ListingForge captures from Jesse's own account
+(dashboard, wizard, generated marketing pack, PDF brochure). To refresh them after
+UI changes, overwrite the files and update the `width`/`height` in
+`flagship.screenshots` in `content/projects.ts` to the new pixel dimensions.
+If a capture includes a screen-recorder badge, `process-shots.js` (scratchpad
+pattern: clone adjacent background over the corner) cleans it.
 
 ## Design system
 
