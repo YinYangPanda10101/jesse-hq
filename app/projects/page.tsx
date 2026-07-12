@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { ProjectVisual } from "@/components/project-visual";
-import { ScreenshotSlot } from "@/components/screenshot-slot";
 import { flagship, projects } from "@/content/projects";
 import { cn } from "@/lib/utils";
 
@@ -108,13 +108,27 @@ function FlagshipCaseStudy() {
         </div>
       </Reveal>
 
-      {/* Screenshot slots */}
+      {/* Product screenshots — real captures from the demo environment */}
       <Reveal>
         <div className="mt-14">
           <p className="kicker">The product</p>
           <div className="mt-5 grid gap-6 sm:grid-cols-2">
-            {flagship.screenshotSlots.map((label) => (
-              <ScreenshotSlot key={label} label={label} />
+            {flagship.screenshots.map((shot) => (
+              <figure key={shot.src}>
+                <div className="overflow-hidden rounded-xl border border-hairline bg-surface shadow-[0_1px_2px_rgba(28,25,20,0.05),0_12px_32px_rgba(28,25,20,0.07)]">
+                  <Image
+                    src={shot.src}
+                    alt={shot.alt}
+                    width={shot.width}
+                    height={shot.height}
+                    sizes="(min-width: 640px) 50vw, 100vw"
+                    className="w-full"
+                  />
+                </div>
+                <figcaption className="mt-3 text-xs text-faint">
+                  ListingForge — {shot.label}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>

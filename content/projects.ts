@@ -51,11 +51,36 @@ export const flagship = {
     "Onboarding first agencies",
   ],
   nextMilestone: "10 paying agencies",
-  screenshotSlots: [
-    "Dashboard",
-    "Listing creation wizard",
-    "Generated marketing pack",
-    "PDF brochure output",
+  /** Real product captures from ListingForge running in demo mode (seeded data). */
+  screenshots: [
+    {
+      label: "Dashboard",
+      src: "/screenshots/dashboard.png",
+      width: 3200,
+      height: 2000,
+      alt: "ListingForge dashboard showing an agency's listings, pipeline and portal distribution",
+    },
+    {
+      label: "Listing creation wizard",
+      src: "/screenshots/wizard.png",
+      width: 3200,
+      height: 2000,
+      alt: "ListingForge listing creation wizard with property details and portal import",
+    },
+    {
+      label: "Generated marketing pack",
+      src: "/screenshots/marketing-pack.png",
+      width: 2520,
+      height: 1920,
+      alt: "A generated ListingForge marketing pack: headlines, descriptions, feature bullets and social captions",
+    },
+    {
+      label: "PDF brochure output",
+      src: "/screenshots/brochure.png",
+      width: 3200,
+      height: 2000,
+      alt: "ListingForge branded print-ready PDF brochure for a property listing",
+    },
   ],
   links: [
     { label: "www.listingforge.co.za", href: "https://www.listingforge.co.za" },

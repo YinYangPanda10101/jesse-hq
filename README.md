@@ -40,16 +40,19 @@ All content lives in `/content` as plain data:
 
 ## Remaining placeholders
 
-1. **ListingForge screenshots** — the Projects page has four labelled screenshot slots
-   (Dashboard, Listing creation wizard, Generated marketing pack, PDF brochure output).
-   Drop real captures into `/public/screenshots/` and swap each `<ScreenshotSlot>` in
-   `app/projects/page.tsx` per the instructions at the top of
-   `components/screenshot-slot.tsx`.
-2. `content/site.ts` → real **domain** (currently jesseschulman.com placeholder) and a
+1. `content/site.ts` → real **domain** (currently jesseschulman.com placeholder) and a
    **booking link** (Cal.com/Calendly) — the "Book a call" links stay hidden until set.
-3. `app/story/page.tsx` → personalise the chapter prose with Jesse's own specifics.
-4. **Afrikaans support** — deliberately not claimed on the ListingForge case study;
+2. `app/story/page.tsx` → personalise the chapter prose with Jesse's own specifics.
+3. **Afrikaans support** — deliberately not claimed on the ListingForge case study;
    add it to `flagship.proofPoints` in `content/projects.ts` once confirmed working.
+
+## Product screenshots
+
+`/public/screenshots/` holds real ListingForge captures (dashboard, wizard, generated
+marketing pack, PDF brochure) taken from the app running in demo mode with seeded
+data — no live keys or customer data. To refresh them after UI changes, re-capture
+at 1600×1000 @2x and overwrite the files; the Projects page picks them up via
+`flagship.screenshots` in `content/projects.ts`.
 
 ## Design system
 
