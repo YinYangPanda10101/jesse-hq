@@ -1,8 +1,10 @@
 export const site = {
   name: "Jesse Schulman",
   role: "Founder of ListingForge",
-  // TODO: replace with the real domain once registered.
-  url: "https://jesseschulman.com",
+  // The live production URL. TODO: swap to the custom domain once registered
+  // (this feeds metadataBase, og:image URLs, sitemap and robots — a wrong
+  // value here breaks link previews on LinkedIn/WhatsApp).
+  url: "https://jesse-hq.vercel.app",
   email: "jesseschulman18@gmail.com",
   whatsapp: "+27 71 668 5130",
   whatsappUrl: "https://wa.me/27716685130",
