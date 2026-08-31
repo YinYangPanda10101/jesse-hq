@@ -107,14 +107,14 @@ export const projects: Project[] = [
   {
     slug: "website-systems",
     name: "Website Concepts & Systems",
-    kicker: "2026 · Local Business Web",
+    kicker: "2026 · Company & Personal Websites",
     status: "Ongoing",
     problem:
-      "Painters, salons, plumbers — the businesses that hold neighbourhoods together — are either invisible online or trapped in outdated sites nobody can update. Traditional agencies quote them out of reach.",
+      "Most companies are either invisible online or trapped in an outdated site nobody can update — the painters, salons and plumbers that hold neighbourhoods together, but established businesses too. Traditional agencies quote them out of reach and hand back something they can’t maintain.",
     solution:
       "Fast, focused websites built as one repeatable system — concept and production builds for STERIC Painters, Meera Beauty Hair Oasis, Sechaba Urban Nation Salon, Sam Plumbing Electrical & Handyman, and Patcha Properties. WhatsApp-first booking, because that’s where their customers already are.",
     outcome:
-      "Five complete, launch-ready builds and a system that gets faster and sharper with each one — proof of a repeatable production line, not a portfolio of one-offs.",
+      "Five complete, launch-ready builds and a system that gets faster and sharper with each one — a repeatable production line, not a portfolio of one-offs. That system is now open: I build and rebuild sites for companies and founders who want something fast, considered, and theirs to keep.",
     visual: "websites",
   },
   {

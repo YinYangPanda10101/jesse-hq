@@ -8,6 +8,7 @@ import { site } from "@/content/site";
 const nowItems = [
   "Onboarding the first ListingForge agencies",
   "Rolling out portal syndication to agencies",
+  "Building and rebuilding websites for companies and founders",
   "Building Jesse OS",
 ];
 
