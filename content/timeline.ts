@@ -49,15 +49,21 @@ export const milestones: Milestone[] = [
     status: "now",
   },
   {
-    date: "Ahead",
-    title: "First paying agency",
-    body: "The milestone that matters most: a business paying because the product genuinely gives them their time back.",
-    status: "ahead",
+    date: "28 July 2026",
+    title: "Portal integrations shipped",
+    body: "Built direct publishing to South Africa’s two major property portals. Private Property went live in production; Property24 passed its full vetting process and was approved.",
+    status: "shipped",
+  },
+  {
+    date: "August 2026",
+    title: "Syndication, CRM and campaign tooling",
+    body: "Per-agency encrypted portal credentials, a Property24 migration importer, Pipedrive lead sync, and a deterministic social-asset builder for the portal launch campaign.",
+    status: "shipped",
   },
   {
     date: "Ahead",
-    title: "Portal integration research",
-    body: "Feed-provider integration carrying listings straight from ListingForge onto South Africa’s major property portals.",
+    title: "First paying agency",
+    body: "The milestone that matters most: a business paying because the product genuinely gives them their time back.",
     status: "ahead",
   },
   {

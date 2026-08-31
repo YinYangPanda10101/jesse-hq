@@ -25,6 +25,7 @@ export const flagship = {
   kicker: "2026 · SaaS — Real Estate",
   status: "Live" as const,
   proofPoints: [
+    "Publishes direct to Property24 & Private Property",
     "Built with live payments",
     "Designed for South African estate agencies",
     "Free tier available",
@@ -32,7 +33,7 @@ export const flagship = {
   whatItSolves:
     "Every mandate demands a small mountain of writing — descriptions, portal text, social posts, brochures. ListingForge turns the property details an agent already has into a complete, ready-to-publish marketing pack in minutes.",
   whoItHelps:
-    "South African estate agencies and the solo agents inside them. Priced in rand, paid through Paystack, and built around how listings actually get published here — portals, WhatsApp and print.",
+    "South African estate agencies and the solo agents inside them. Priced in rand, paid through Paystack, and built around how listings actually get published here — straight onto Property24 and Private Property, plus WhatsApp and print.",
   whyItMatters:
     "The hours agents spend producing marketing are hours not spent with sellers and buyers mid-move. Every pack generated hands an afternoon back to the person guiding the transition.",
   produces: [
@@ -47,7 +48,8 @@ export const flagship = {
   currentStatus: [
     "Live product",
     "Paystack approved",
-    "Public launch in progress",
+    "Private Property integration live in production",
+    "Property24 integration vetted and approved",
     "Onboarding first agencies",
   ],
   nextMilestone: "10 paying agencies",
