@@ -8,7 +8,6 @@ import { site } from "@/content/site";
 const nowItems = [
   "Signing ListingForge’s first paying agency",
   "Building and rebuilding websites for companies and founders",
-  "Building Jesse OS",
 ];
 
 export default function Home() {
