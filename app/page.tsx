@@ -6,8 +6,7 @@ import { flagship, projects } from "@/content/projects";
 import { site } from "@/content/site";
 
 const nowItems = [
-  "Onboarding the first ListingForge agencies",
-  "Rolling out portal syndication to agencies",
+  "Signing ListingForge’s first paying agency",
   "Building and rebuilding websites for companies and founders",
   "Building Jesse OS",
 ];
@@ -190,7 +189,7 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-28 sm:py-36">
           <div className="grid gap-10 md:grid-cols-2">
             <Reveal>
-              <p className="kicker">Now — August 2026</p>
+              <p className="kicker">Now — October 2026</p>
               <h2 className="mt-6 font-serif text-3xl tracking-tight sm:text-4xl">
                 What I&rsquo;m focused on
               </h2>
