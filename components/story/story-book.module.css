@@ -1,0 +1,631 @@
+/*
+  Why I Build, as a book.
+  Art-directed from a real hardback: ink cloth cover with a hinge groove,
+  warm paper, a soft shadow in the gutter, page edges at the fore-edge.
+  No desk scene, no props, no glow. Everything inside a page is sized in
+  --u (1% of the page width) so the type always fits the same way.
+*/
+
+.stage {
+  --page-w: min(540px, calc((100dvh - 176px) * 0.8), calc((100vw - 96px) / 2));
+  --page-h: calc(var(--page-w) * 1.25);
+  --u: calc(var(--page-w) / 100);
+
+  --page-paper: #fdfbf6;
+  --endpaper: #ebe0cc;
+  --cover: #211d17;
+  --cover-ink: #f4efe6;
+  --cover-accent: #c98a52;
+  --page-ink: rgba(33, 29, 23, 0.92);
+  --page-faint: #a89f8f;
+  --page-muted: #6f675a;
+
+  --turn: 900ms;
+  --ease: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100dvh - 4rem);
+  padding: 0.9rem 0;
+}
+
+/* ---------- the book ---------- */
+
+.book {
+  position: relative;
+  width: calc(var(--page-w) * 2);
+  height: var(--page-h);
+  /* Deep enough that a turning page reads as paper, not a 3D effect. */
+  perspective: calc(var(--page-w) * 7);
+  transition: transform var(--turn) var(--ease);
+}
+
+/* Closed: slide left by half a page so the cover sits centred. */
+.closed {
+  transform: translateX(-25%);
+}
+
+/* Static page blocks under the leaves: they carry the shadow on the
+   desk and the stacked page edges, so the leaves themselves stay flat. */
+.base {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  background: var(--page-paper);
+}
+
+.baseRight {
+  left: 50%;
+  box-shadow:
+    1px 1px 0 #e6ded0,
+    2px 2px 0 var(--page-paper),
+    3px 3px 0 #ded5c5,
+    0 calc(var(--u) * 6) calc(var(--u) * 9) calc(var(--u) * -5) rgba(33, 29, 23, 0.3),
+    0 1px 3px rgba(33, 29, 23, 0.08);
+}
+
+.baseLeft {
+  left: 0;
+  opacity: 0;
+  transition: opacity 160ms ease;
+  box-shadow:
+    -1px 1px 0 #e6ded0,
+    -2px 2px 0 var(--page-paper),
+    -3px 3px 0 #ded5c5,
+    0 calc(var(--u) * 6) calc(var(--u) * 9) calc(var(--u) * -5) rgba(33, 29, 23, 0.3),
+    0 1px 3px rgba(33, 29, 23, 0.08);
+}
+
+/* Only appears once the cover has landed, like the inside of a real book. */
+.open .baseLeft {
+  opacity: 1;
+  transition-delay: calc(var(--turn) - 140ms);
+}
+
+/* ---------- leaves ---------- */
+
+.leaf {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform var(--turn) var(--ease);
+  will-change: transform;
+}
+
+.turned {
+  transform: rotateY(-180deg);
+}
+
+.top {
+  cursor: pointer;
+}
+
+/* The top page lifts a few degrees on hover: a quiet "this turns" cue. */
+.idle .top:not(.turned):hover {
+  transform: rotateY(-4deg);
+}
+
+.idle .top.turned:hover {
+  transform: rotateY(-176deg);
+}
+
+/* ---------- faces ---------- */
+
+.face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-color: var(--page-paper);
+}
+
+/* Right-hand page: the gutter shadow sits on its left edge. */
+.front {
+  background-image: linear-gradient(
+    to right,
+    rgba(33, 29, 23, 0.11),
+    rgba(33, 29, 23, 0.035) 4%,
+    rgba(33, 29, 23, 0) 9%
+  );
+}
+
+/* Left-hand page: mirrored. */
+.back {
+  transform: rotateY(180deg);
+  background-image: linear-gradient(
+    to left,
+    rgba(33, 29, 23, 0.11),
+    rgba(33, 29, 23, 0.035) 4%,
+    rgba(33, 29, 23, 0) 9%
+  );
+}
+
+/* ---------- page furniture ---------- */
+
+.page {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--u) * 11) calc(var(--u) * 11) calc(var(--u) * 10);
+  color: var(--page-ink);
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
+.front .page {
+  padding-left: calc(var(--u) * 9);
+}
+
+.back .page {
+  padding-right: calc(var(--u) * 9);
+}
+
+.runningHead,
+.folio {
+  position: absolute;
+  margin: 0;
+  color: var(--page-faint);
+}
+
+.runningHead {
+  top: calc(var(--u) * 5.2);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--u) * 1.8);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.folio {
+  bottom: calc(var(--u) * 4.6);
+  font-size: calc(var(--u) * 2.5);
+  font-style: italic;
+}
+
+.front .runningHead,
+.front .folio {
+  right: calc(var(--u) * 11);
+}
+
+.back .runningHead,
+.back .folio {
+  left: calc(var(--u) * 11);
+}
+
+.middle {
+  justify-content: center;
+}
+
+/* ---------- running text ---------- */
+
+/* Ragged right, not justified: at this measure justification opens wide
+   gaps on short lines ("never   spammy,   never"). */
+.prose p {
+  margin: 0;
+  font-size: calc(var(--u) * 3.9);
+  line-height: 1.68;
+  text-align: left;
+  text-wrap: pretty;
+}
+
+/* Book convention: paragraphs are indented, not spaced. */
+.prose p + p {
+  text-indent: 1.4em;
+}
+
+/* A page that continues a chapter starts on a new paragraph. */
+.continued p:first-child {
+  text-indent: 1.4em;
+}
+
+.dropCap::first-letter {
+  float: left;
+  margin: 0.08em 0.08em 0 0;
+  font-size: 3.3em;
+  font-weight: 500;
+  line-height: 0.8;
+  color: var(--accent);
+}
+
+/* ---------- chapter opener ---------- */
+
+.numeral {
+  margin: calc(var(--u) * 3) 0 0;
+  font-size: calc(var(--u) * 7);
+  font-style: italic;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.chapterTitle {
+  margin: calc(var(--u) * 2.5) 0 0;
+  font-size: calc(var(--u) * 5.2);
+  font-weight: 400;
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.rule {
+  width: calc(var(--u) * 8);
+  height: 1px;
+  margin: calc(var(--u) * 5) 0 calc(var(--u) * 5.5);
+  background: var(--accent);
+}
+
+.endMark {
+  width: calc(var(--u) * 4);
+  height: 1px;
+  margin: calc(var(--u) * 7) auto 0;
+  background: var(--accent);
+  opacity: 0.8;
+}
+
+/* ---------- cover ---------- */
+
+.cover {
+  border-radius: 0 3px 3px 0;
+  background-color: var(--cover);
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.38),
+      rgba(0, 0, 0, 0) 3%,
+      rgba(255, 255, 255, 0.035) 4.2%,
+      rgba(255, 255, 255, 0) 6%
+    ),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.014) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 3px);
+  color: var(--cover-ink);
+}
+
+.coverFrame {
+  position: absolute;
+  inset: calc(var(--u) * 6) calc(var(--u) * 6) calc(var(--u) * 6) calc(var(--u) * 9);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--u) * 9) calc(var(--u) * 8);
+  border: 1px solid rgba(244, 239, 230, 0.16);
+}
+
+.coverKicker,
+.coverAuthor {
+  margin: 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--u) * 2);
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.coverKicker {
+  color: var(--cover-accent);
+}
+
+.coverAuthor {
+  color: rgba(244, 239, 230, 0.62);
+}
+
+.coverTitle {
+  margin: calc(var(--u) * 5) 0 0;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: calc(var(--u) * 7.2);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+}
+
+.coverRule {
+  width: calc(var(--u) * 9);
+  height: 1px;
+  margin-top: calc(var(--u) * 7);
+  background: var(--cover-accent);
+}
+
+/* ---------- inside cover: contents on the endpaper ---------- */
+
+.endpaper {
+  border-radius: 3px 0 0 3px;
+  background-color: var(--endpaper);
+  background-image: linear-gradient(
+    to left,
+    rgba(33, 29, 23, 0.16),
+    rgba(33, 29, 23, 0) 5%
+  );
+}
+
+.label {
+  margin: 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--u) * 1.9);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.contentsTitle {
+  margin: calc(var(--u) * 3) 0 0;
+  font-size: calc(var(--u) * 5.4);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.toc {
+  margin: calc(var(--u) * 8) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.toc li + li {
+  margin-top: calc(var(--u) * 2.8);
+}
+
+.tocItem {
+  display: flex;
+  align-items: baseline;
+  gap: calc(var(--u) * 2);
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: calc(var(--u) * 3.3);
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+}
+
+.tocNum {
+  flex: none;
+  width: calc(var(--u) * 5.5);
+  font-style: italic;
+  color: var(--accent);
+}
+
+.tocTitle {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.22em;
+  transition: text-decoration-color 0.25s ease;
+}
+
+.tocItem:hover .tocTitle,
+.tocItem:focus-visible .tocTitle {
+  text-decoration-color: rgba(143, 74, 42, 0.55);
+}
+
+.tocLeader {
+  flex: 1;
+  min-width: calc(var(--u) * 3);
+  border-bottom: 1px dotted rgba(33, 29, 23, 0.32);
+  transform: translateY(calc(var(--u) * -0.9));
+}
+
+.tocPage {
+  font-style: italic;
+  color: var(--page-muted);
+}
+
+/* ---------- foreword ---------- */
+
+.foreword {
+  margin: calc(var(--u) * 5) 0 0;
+  font-size: calc(var(--u) * 4.1);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.signature {
+  margin: calc(var(--u) * 8) 0 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--u) * 1.9);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--page-muted);
+}
+
+.signature::before {
+  content: "";
+  display: block;
+  width: calc(var(--u) * 6);
+  height: 1px;
+  margin-bottom: calc(var(--u) * 3);
+  background: var(--accent);
+}
+
+.hint {
+  position: absolute;
+  right: calc(var(--u) * 11);
+  bottom: calc(var(--u) * 4.6);
+  margin: 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--u) * 1.9);
+  color: var(--page-faint);
+}
+
+/* ---------- closing quote + end page ---------- */
+
+.quote {
+  margin: 0;
+  font-size: calc(var(--u) * 6.2);
+  font-style: italic;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--ink);
+}
+
+.closing {
+  margin: calc(var(--u) * 5) 0 0;
+  font-size: calc(var(--u) * 5.4);
+  font-weight: 400;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  align-self: flex-start;
+  margin-top: calc(var(--u) * 7);
+  padding: calc(var(--u) * 2.5) calc(var(--u) * 4.8);
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--u) * 2.7);
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.cta:hover {
+  background: rgba(33, 29, 23, 0.85);
+}
+
+.textButton {
+  align-self: flex-start;
+  margin-top: calc(var(--u) * 3.6);
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: calc(var(--u) * 2.4);
+  color: var(--page-muted);
+  text-decoration: underline;
+  text-decoration-color: #e8e1d3;
+  text-underline-offset: 0.25em;
+  cursor: pointer;
+}
+
+.textButton:hover {
+  color: var(--ink);
+}
+
+.colophon {
+  position: absolute;
+  right: calc(var(--u) * 11);
+  bottom: calc(var(--u) * 10);
+  left: calc(var(--u) * 9);
+  margin: 0;
+  font-size: calc(var(--u) * 2.5);
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--page-faint);
+}
+
+/* ---------- controls under the book ---------- */
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  width: calc(var(--page-w) * 2);
+  margin-top: 1.4rem;
+}
+
+.navButton {
+  height: 2.25rem;
+  padding: 0 1.1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: none;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--ink);
+  cursor: pointer;
+  transition:
+    border-color 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.navButton:hover:not(:disabled) {
+  border-color: rgba(33, 29, 23, 0.4);
+}
+
+.navButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.status {
+  margin: 0;
+  text-align: center;
+}
+
+.statusLabel {
+  display: block;
+  font-family: var(--font-fraunces), Georgia, serif;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.statusCount {
+  display: block;
+  margin-top: 0.15rem;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--page-faint);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.6rem 0 0;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 0.75rem;
+  color: var(--page-faint);
+}
+
+.metaButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--page-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--hairline);
+  text-underline-offset: 0.25em;
+  cursor: pointer;
+}
+
+.metaButton:hover {
+  color: var(--ink);
+}
+
+/* Reduced motion: still a book, the pages just change without turning. */
+@media (prefers-reduced-motion: reduce) {
+  .book,
+  .leaf,
+  .baseLeft {
+    transition: none !important;
+  }
+
+  .idle .top:not(.turned):hover {
+    transform: none;
+  }
+
+  .idle .top.turned:hover {
+    transform: rotateY(-180deg);
+  }
+}

@@ -1,0 +1,50 @@
+/*
+  Phones and small screens get the original scrolling story. Desktop gets
+  the book, unless the reader chose "read it as one page". Both are in the
+  HTML, so the text stays crawlable either way; one shared h1.
+*/
+
+.bookStage {
+  display: none;
+}
+
+.backToBook {
+  display: none;
+}
+
+@media (min-width: 64rem) and (min-height: 560px) {
+  .root:not(.scrollMode) .bookStage {
+    display: block;
+  }
+
+  .root:not(.scrollMode) .vertical {
+    display: none;
+  }
+
+  /* Visually hidden, still read by screen readers and search engines. */
+  .root:not(.scrollMode) .header {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .scrollMode .backToBook {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--ink);
+    cursor: pointer;
+  }
+}
